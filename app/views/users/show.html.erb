@@ -2,7 +2,9 @@
 <div>
   <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image(100, 100) %>
-  <p><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></p>
+  <% if @user.id == current_user.id %>
+    <p><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></p>
+  <% end %>
 </div>
 
 <!--ユーザーの投稿一覧-->
