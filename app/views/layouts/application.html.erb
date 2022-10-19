@@ -13,6 +13,10 @@
   <body>
     <header>
       <% if user_signed_in? %>
+        <!--動作確認テスト用に一覧に戻れるタイムラインのリンクを設置-->
+        <li>
+          <%= link_to "タイムライン", post_images_path %>
+        </li>
         <li>
           <%= link_to "投稿フォーム", new_post_image_path %>
         </li>
