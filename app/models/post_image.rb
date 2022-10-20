@@ -1,8 +1,10 @@
 class PostImage < ApplicationRecord
   has_one_attached :image
   
-  # 1対Nの関係。PostImgageは「」
+  # 1対Nの関係。PostImgageは「1」
   belongs_to :user
+  # 1対Nの関係。post_commentsに対してpost_imagesは「1」
+  has_many :post_comments, dependent: :destroy
   
   # def get_image
   #   if image.attached?
