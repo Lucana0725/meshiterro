@@ -7,6 +7,10 @@ class PostImage < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
+  # バリデーションの設定
+  validates :image, presence: true
+  validates :shop_name, presence: true
+  
   # def get_image
   #   if image.attached?
   #     image
