@@ -22,7 +22,7 @@ class PostImagesController < ApplicationController
 
   def index
     # @post_images = PostImage.all
-    # kaminariのpageメソッドを1ページ文の決められた数のデータだけを新しい順に取得する
+    # kaminariのpageメソッドを使って1ページ文の決められた数のデータだけを新しい順に取得する
     @post_images = PostImage.page(params[:page])
   end
 
