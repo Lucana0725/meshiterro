@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+  # ログイン認証が済んでいなければ(:authenticate_user!)、ログイン画面へリダイレクトする
+  # exceptは指定したアクションをbefore_actionから外せる。今回はログイン前はtopページのみを表示したいのでexcept: [:top]
+  before_action :authenticate_user!, except: [:top]
+  
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   # ログイン後に遷移するページをtopからaboutへ変更(デフォルトはroot_path)
