@@ -7,6 +7,7 @@ class User < ApplicationRecord
   # 1対Nの関係。userは「1」
   has_many :post_images, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   # プロフィール画像をアップロードできるようにする
   # profile_imageという名前で、ActiveStrageでプロフィール画像を保存できるように。
