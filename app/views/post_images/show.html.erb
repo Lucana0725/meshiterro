@@ -11,6 +11,22 @@
   <% if @post_image.user == current_user %>
     <%= link_to '削除', post_image_path(@post_image), method: :delete, "data-confirm" => "削除します。よろしいですか？" %>
   <% end %>
+  
+  <!--いいね機能。PostImageモデルで設定したfavorited_by?メソッドで、投稿画像につけられた「いいね」に、自分(current_user)が-->
+  <!--含まれているorいないで処理をトグルしている（含まれていなければ「いいね」の削除）、含まれていれば(else)、「いいね」の付与。かな！？-->
+  <% if @post_image.favorited_by?(current_user) %>
+    <p>
+      <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
+        ♥<%= @post_image.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to post_image_favorites_path(@post_image), method: :post do %>
+        ♥<%= @post_image.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
 </div>
 
 <!--コメント表示画面-->
