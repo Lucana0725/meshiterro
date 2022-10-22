@@ -2,7 +2,7 @@ class PostCommentsController < ApplicationController
   def create
     post_image = PostImage.find(params[:post_image_id])
     # comment = current_user.PostComment.new(post_comment_params)
-    # 上の行とも
+    # 上の行と下の行たちとは動きが違う(試してみたらエラーになった…)
     comment = current_user.post_comments.new(post_comment_params)
     # 下の二行とも意味は一緒
     # comment = PostComment.new(post_comment_params)
@@ -10,6 +10,11 @@ class PostCommentsController < ApplicationController
     comment.post_image_id = post_image.id
     comment.save
     redirect_to post_image_path(post_image)
+  end
+  
+  def destroy
+    PostComment.find(params[:id]).destroy
+    redirect_to post_image_path(params[:post_image_id])
   end
   
   private
